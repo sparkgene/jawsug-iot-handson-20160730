@@ -7,6 +7,7 @@ var light_pin = new mraa.Aio(0);
 var temp_pin = new mraa.Aio(1);
 var sound_pin = new mraa.Aio(2);
 var grove_lcd = new lcd.Jhd1313m1(6, 0x3E, 0x62);
+grove_lcd.setColor(0,0,255);
 
 
 setInterval(function() {
@@ -22,7 +23,6 @@ setInterval(function() {
     temp_val = Math.round((1.0 / ((Math.log(celsius / 10000.0) / 3975.0) + (1.0 / 298.15)) - 273.15) * 10) / 10
     var sound_raw_val = sound_pin.read();
     // Display sensed analog data on LCD
-    grove_lcd.setColor(0,0,255);
     grove_lcd.setCursor(0,0);
     grove_lcd.write("Temp: " + temp_val);
     grove_lcd.setCursor(1,0);
